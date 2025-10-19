@@ -1,1 +1,147 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{titlesec}  % Include titlesec for title formatting
+\usepackage[a4paper, left=1in, right=1in, top=1in, bottom=1in]{geometry}
+\usepackage{setspace}
+
+% Define font sizes for section and subsection titles while keeping numbering
+\titleformat{\section}
+  {\fontsize{22}{26}\selectfont\bfseries} % Format for section titles
+  {\thesection}{1em}{}
+
+\titleformat{\subsection}
+  {\fontsize{20}{24}\selectfont\bfseries} % Format for subsection titles
+  {\thesubsection}{1em}{}
+
+\renewcommand{\maketitle}{
+    \begin{center}
+        {\fontsize{24}{28}\selectfont\bfseries Final Project} \\[1em]  % Title
+        {\fontsize{24}{28}\selectfont Author: Aeran Lee} \\[1em]       % Author
+        {\fontsize{24}{28}\selectfont October 2025}                               % Date
+    \end{center}
+}
+
+
+\title{Final_Project}
+\author{Aeran Lee}
+\date{October 2025}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+\begin{spacing}{1}
+\fontsize{18}{21}\selectfont
+I chose SCLY3 (ENSG00000000457.14) as main Gene and DPM1 (ENSG00000000419.13) as secondary Gene for my final project. SCLY3-medicated ROCK2 protein stability may play a role in the growth and metastasis of HCC cells(NIH, 2022). Moreover, disease associated with SCYL3 include Afferent Loop Syndrome and Facial Neuralgia (GeneCards). 
+Mutation of DPM1 is associated with congenital disorder of glycosylation type 1e (Proteinatlas org). Glycosylation type 1e rare disorder of multiple glycosylation pathways characterized by global developmental delay, motor skills delay, hypotonia, seizures, microcephaly and eye abnormalities (including retinopathy, nystagmus, strabismus) with varying onset and severity (NIH). Additional clinical features may include peripheral neuropathy, dysmorphic features (facial and limb abnormalities), ataxia and severe gastrointestinal involvement (NIH). 
+
+I chose SCLY3 with the interest to explore pathogen of the disease by analyzing Definition) and predisposition by analyzing Vital status) and DPM1 to find any relationship between SCLY3 in neurological disease perspective. 
+\end{spacing}
+
+\section{Methods}
+\fontsize{18}{21}\selectfont
+\subsection{Summary Statistics}
+I used Readr, Knitr and Dplyr. Readr provides provides a fast and user-friendly way to read rectangular data from delimited files, such as comma-separated values (CSV) and tab-seperated values (TSV). Knitr function is to generate markdown tables without heavy code work. Dplyr its ability to manipulate date in an easy, readable way and apply summary functions to columns to create a new table of summary statistics. 
+
+\subsection{Histogram and Scatter Plot}
+For histogram, I used ggplot2, gridExtra and tibble packages. 
+The ggplot2 packages allows to quickly plot attractive graphics and to visualize and explore data. The gridExtra is useful functions for combining plots. 
+The tibble packages provides utilities for handling tibbles, where “tibble” is a colloquial term for the S3 tbl_df class. Tibble is the central data structure for the set of packages known as the tidyverse, including dplyr, ggplot2, tidyr and readr. 
+
+\subsection{Violin Plot}
+For violin plot, I used ggplot2, gridExtra, tibble and dplyr packages that have been discussed in histogram and scatter plot. I would like to talk pipe-function ($<$). Pipe function works essentially in this plot as I was trying to join counts with the meta data frame, matching them on the column .sample. Dplyr works well with pipe function ($>$), which basically feeds output into new functions
+
+\subsection{Heatmap}
+For Heatmap, I used Complex Heatmap, Circlize and grid packages. 
+Complex Heatmaps are efficient to visualize association between different sources of data sets and reveal potential patterns. Complex Heatmap package provides a highly flexible way to arrange multiple heatmaps and supports various annotation graphics (Bioconductor). 
+Circlize is a package is to provide circular visualization. Circular layout is an efficient way for visualization of huge amounts of information (CRAN). 
+Grid package provides primitive graphical functions that underlie the ggplot2 plotting system. Grid is low-level, typically used to modify very specific elements of a plot, rather than being functions to use for one-line plotting call while ggplot2 function allows to change the theme of a plot (including specific elements of the theme for plot), to customize the colors used within the plot, and to create faceted “small multiple” graphs (Bookdown). 
+
+\subsection{Jitter Plot}
+Packages used were ggplot2, dplyr and ggpubr. The ggplot2 and dplyr have been discussed earlier. The package in R provides a convenient interface for creating publication-ready plots by extending the functionality of ggplot2. It offers additional themes, geoms, and tools for combining multiple plots, adding annotations, and creating complex figures suitable for research and presentation (Geeksforgeeks).
+
+\section{Results}
+\fontsize{18}{21}\selectfont
+\subsection{Summary Statistics}
+
+\begin{figure}[h]  % The [h] option suggests positioning "here".
+    \centering  % Center the image
+\includegraphics[width=0.30\textwidth]{images/ENSG00000000457.14.png}  % Scale the image to 30% of the text width
+    \caption{SCLY3}  % Caption for the image
+    \label{ENSG00000000457.14_SCLY3}  % Label for referencing the image in the text
+    \includegraphics[width=0.30\textwidth]{images/ENSG00000000419.13.png}  % Scale the image to 30% of the text width
+    \caption{DPM1}  % Caption for the image
+    \label{ENSG00000000419.13_DPM1}  % Label for referencing the image in the text
+\end{figure}
+
+
+\subsection{Histogram}
+Histogram is well drawn as it reflects statistical value from summary statistics. Median located in the middle of 1000 and 2000 (median 1480), max right before 8000 on histogram (Max 7899) and min located between 0 to 200 (min 131).
+
+\begin{figure}[h]  % The [h] option suggests positioning "here".
+    \centering  % Center the image
+\includegraphics[width=0.60\textwidth]{images/histogram.png}  % Scale the image to 60% of the text width
+    \caption{Histogram SCLY3}  % Caption for the image
+    \label{SCLY3}  % Label for referencing the image in the text
+\end{figure}
+
+\subsection{Scatter Plot}
+I added linear regression to find the relationship in between these two genes by adding geom smooth in original plot from Final check in 1. What I found is that Y axis (ENSG00000000419.13) increases by X axis (ENSG00000000457.14), however, it does not support whether these are pathologically or etiologically related.  
+
+\begin{figure}[h]  % The [h] option suggests positioning "here".
+    \centering  % Center the image
+\includegraphics[width=0.60\textwidth]{images/scatter plot.png}  % Scale the image to 60% of the text width
+    \caption{Scatter Plot SCLY3 vs DPM1}  % Caption for the image
+    \label{Scatter SCLY3 vs DPM1}  % Label for referencing the image in the text
+\end{figure}
+
+
+\subsection{Violin Plot}
+Based on the visualization, females’ distribution is a tiny bit wider than males as female’s first quartile slightly below than man. The median and 3rd quartile remain as the similar levels. 
+
+\begin{figure}[h]  % The [h] option suggests positioning "here".
+    \centering  % Center the image
+\includegraphics[width=0.60\textwidth]{images/Violin plot.png}  % Scale the image to 60% of the text width
+    \caption{Violin Plot SCLY3 by Gender}  % Caption for the image
+    \label{Violin Plot SCLY3 by Gender}  % Label for referencing the image in the text
+\end{figure}
+
+\subsection{Heatmap}
+Used 10 genes to create heatmap. I took two variables from meta data: vital status and definition. All Genes counts were mainly in median as it bottom box filled with light green. Per definition on Heatmap, most cells from 10 genes were primarily solid tumor (light blue). Majority of the participants were alive (green). Although, it does not indicate exact statistical values, it provides clear visualization of statistical trends.
+
+\begin{figure}[h]  % The [h] option suggests positioning "here".
+    \centering  % Center the image
+\includegraphics[width=0.60\textwidth]{images/Heatmap.png}  % Scale the image to 60% of the text width
+    \caption{Heatmap - Definition vs Vital Status}  % Caption for the image
+    \label{Heatmap - Definition vs Vital Status}  % Label for referencing the image in the text
+\end{figure}
+
+\subsection{Jitter Plot}
+I created a Jitter plot of ENSG00000000457.14 that represents Vital status by Definition.It shows most cells were primary solid tumor. Majority participants were alive.
+
+\begin{figure}[h]  % The [h] option suggests positioning "here".
+    \centering  % Center the image
+\includegraphics[width=0.60\textwidth]{images/Jitter.png}  % Scale the image to 60% of the text width
+    \caption{Jitter Plot of SCLY3 by Definition}  % Caption for the image
+    \label{Jitter Plot of SCLY3 by Definition}  % Label for referencing the image in the text
+\end{figure}
+
+\section{References}
+\fontsize{18}{21}\selectfont
+\begin{itemize}
+  \item \url{https://www.genecards.org/cgi-bin/carddisp.pl?gene=SCYL3}
+  \item \url{https://www.proteinatlas.org/ENSG00000000419-DPM1}
+  \item \url{https://rarediseases.info.nih.gov/diseases/9831/congenital-disorder-of-glycosylation-type-1e}
+  \item \url{https://pmc.ncbi.nlm.nih.gov/articles/PMC9691429/}
+  \item \url{readr.tidyverse.org}
+  \item \url{https://www.rdocumentation.org/packages/knitr/versions/1.30}
+  \item \url{https://rstudio.github.io/cheatsheets/html/data-transformation.html}
+  \item \url{https://tibble.tidyverse.org/reference/tibble-package.html}
+  \item \url{https://sabahzero.github.io/dataviz/journal_fig_tutorial}
+  \item \url{https://bioconductor.org/packages/release/bioc/html/ComplexHeatmap.html}
+\end{itemize}
+
+
+\end{document}
 
